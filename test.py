@@ -1,0 +1,1 @@
+print("Hello! I am the starting child from the testing micro framework!")
