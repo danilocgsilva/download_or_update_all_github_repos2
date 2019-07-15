@@ -10,7 +10,7 @@ class TestsArguments:
         self.method_choosed = self.get_method()
 
 
-    def get_class(self):
+    def get_class(self) -> str:
         try:
             first_argument_given = sys.argv[1]
         except:
@@ -19,32 +19,28 @@ class TestsArguments:
         tests_files = self.fs.get_file_list("Tests")
         classes_allowed = self.filter_valid_files_from_tests(tests_files)
         if not first_argument_given in classes_allowed:
-            raise("The class given is not a valid choosen.")
+            raise Exception("The class given is not a valid choosen.")
 
         return first_argument_given
 
 
-    def get_method(self):
+    def get_method(self) -> str:
         try:
             return sys.argv[2]
         except:
-            raise Exception("The first argument, that must be the method name, has not been setted.")
+            raise Exception("The second argument, that must be the method name, has not been setted.")
 
 
     def filter_valid_files_from_tests(self, raw_list) -> list:
         invalid_occurrences = ["__pycache__", "TestsArguments.py"]
 
         for invalid in invalid_occurrences:
-            print("The invalid is " + invalid)
             raw_list.remove(invalid)
 
         filtered_list = []
         for item_list in raw_list:
-
+            if re.search('.py$', item_list):
+                item_list = item_list[:(len(item_list) - 3)]
             filtered_list.append(item_list)
 
-        # print(raw_list)
-        # raw_list.remove("TestsArguments.py")
-        # print(raw_list)
-
-        return raw_list
+        return filtered_list
