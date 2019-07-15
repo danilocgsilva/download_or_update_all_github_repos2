@@ -1,4 +1,7 @@
 from FS import FS
+import importlib
+from inspect import getmembers, isfunction
+from Environment import Environment
 import re
 import sys
 
@@ -26,9 +29,17 @@ class TestsArguments:
 
     def get_method(self) -> str:
         try:
-            return sys.argv[2]
+            second_argument_given = sys.argv[2]
         except:
             raise Exception("The second argument, that must be the method name, has not been setted.")
+
+        choosed_class_instance = importlib.import_module(self.class_choosed)
+        env = Environment()
+        print(dir(env))
+        print("---")
+        print(dir(choosed_class_instance))
+
+        return second_argument_given
 
 
     def filter_valid_files_from_tests(self, raw_list) -> list:
