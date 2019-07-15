@@ -1,1 +1,6 @@
-print("Hello! I am the starting child from the testing micro framework!")
+from Tests.TestsArguments import TestsArguments
+
+testsArguments = TestsArguments()
+
+# def test(testsArguments: TestsArguments):
+

@@ -1,3 +1,5 @@
+import sys
+
 class Environment:
-    def getPythonVersion():
-        return "Hello world! I am the getPythonVersion function"
+    def get_pythonVersion(self):
+        return sys.version_info[0]
